@@ -1,0 +1,68 @@
+syntax에 template.js 파일에 variable2.js 파일을 복사해서 붙여넣기
+이거 쓰는 시간이야``
+아 통째로 시켜주는건가?
+문자열을 끝내고 더하기 쓰는거 복잡하니깐 ${name}으로 해야 해요!
+
+
+## url에 main.js 실행시켜줘
+지금 가져오는 각각의 정보들은 웹페이지에있는 1.html 2.html 기타 등등
+
+main.js에 쿼리스트링?!이란!
+
+중간에 var _url = request.url;
+require('url')이라는 모듈을 사용할거야
+
+하.. 어디서 놓친걸까..
+
+뒤에 들거나는 HTML이나 CSS(아직)이 request.url로 들어감!
+구래서 var url = request.url; console.log(url); 하면 ?id=HTML나와
+
+맨 위에 복붙 require는 모듈 호출! 파이썬에.. import 랑 똑같은건가?
+var url = require('url'); -- 이건 모듈의 url
+변수 url은 _를 붙이면 된다
+밑에 var app 안에 들어있는 url 변수는 전부다 _url로 바꾼다!
+=========================================
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
+ 
+var app = http.createServer(function(request,response){
+    var _url = request.url;
+    var queryData = url.parse(_url, true).query;
+    console.log(queryData.id);
+    if(_url == '/'){
+      _url = '/index.html';
+    }
+    if(_url == '/favicon.ico'){
+      return response.writeHead(404);
+    }
+    response.writeHead(200);
+    response.end(queryData.id);
+ 
+});
+app.listen(3000);
+=========================================
+
+# App
+1.html을 복사해서
+response.writeHead(200); 밑에
+var template = `요기 복붙` template 기호 사용해서
+queryString?에 따라서 바꼈으면 하는
+
+id 값을 복사 해서 바꼈으면 하는 부분에 ${}붙여넣기!
+
+/?id=HTML
+/?id=CSS
+/?id=JavaScript
+하면 중간이 바뀝니다~!
+
+var title = queryData.id로 주면 의미를 더 나는 title! 으로 보기 쉽다.
+
+index 홉페이지를 / 이걸로 바꾸면 되는데 위에 조건문에 걸린다
+왕신기 하다 진짜..!
+최상위 경로로 접속하면 title = 'Welcome';
+
+
+Create Read Update Delete 4가지의 처리가 정보를 다루는 핵심 처리 방법이다
+
+NodeJS디렉토리 만드는것부터 시작!

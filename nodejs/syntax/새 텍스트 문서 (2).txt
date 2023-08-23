@@ -1,0 +1,12 @@
+var name = 'k88805';
+var letter = 'Dear'+name+'\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut'
+
+console.log(letter);
+
+var letter = `Dear${name}
+
+Lorem ipsum dolor sit
+
+${name}`;
+
+// template 시작한다는건 `` 이거야
